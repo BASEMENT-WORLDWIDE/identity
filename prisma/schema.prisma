@@ -35,7 +35,8 @@ model Application {
     name String
     description String?
     baseUrl String?
-    issuerUrl String
+    subdomain String
+    domain String?
     users ApplicationUser[]
     secret String
     clientId String

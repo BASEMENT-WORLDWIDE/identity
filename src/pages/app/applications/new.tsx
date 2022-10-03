@@ -12,21 +12,26 @@ const Home: NextPage = () => {
     evt.preventDefault();
     const formData = new FormData(evt.currentTarget);
     const name = formData.get("name");
-    const baseUrl = formData.get("subdomain");
+    const subdomain = formData.get("subdomain");
     const description = formData.get("description");
+    const baseUrl = formData.get("base_url");
     if (typeof name !== "string") {
       return;
     }
-    if (typeof baseUrl !== "string") {
+    if (typeof subdomain !== "string") {
       return;
     }
     if (typeof description !== "string") {
       return;
     }
+    if (typeof baseUrl !== "string") {
+      return;
+    }
     const response = await createApplication.mutateAsync({
       name,
-      baseUrl,
+      subdomain,
       description,
+      baseUrl,
     });
 
     if (response.id) {
@@ -67,6 +72,12 @@ const Home: NextPage = () => {
               <label>
                 Subdomain
                 <input id="subdomain" name="subdomain" />
+              </label>
+            </div>
+            <div>
+              <label>
+                Base URL
+                <input id="base_url" name="base_url" />
               </label>
             </div>
             <div>

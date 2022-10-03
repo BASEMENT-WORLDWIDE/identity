@@ -57,6 +57,11 @@ export default function middleware(req: NextRequest) {
   }
 
   // rewrite everything else to `/_applications/[site] dynamic route
+  const isIndexPage = url.pathname === "/";
+  if (isIndexPage) {
+    url.pathname = `/login`;
+    return NextResponse.redirect(url);
+  }
   url.pathname = `/_applications/${currentHost}${url.pathname}`;
   return NextResponse.rewrite(url);
 }

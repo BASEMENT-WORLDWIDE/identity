@@ -10,17 +10,17 @@ export const adminApplicationsRouter = t.router({
         name: z.string(),
         description: z.string().nullish(),
         baseUrl: z.string(),
-        issuerUrl: z.string().nullish(),
+        subdomain: z.string().nullish(),
       })
     )
     .mutation(({ ctx, input }) => {
-      const defaultIssuerUrl =
-        input.issuerUrl ?? input.name.toLowerCase().replace("s", "-");
+      const defaultSubdomain =
+        input.subdomain ?? input.name.toLowerCase().replace("s", "-");
       return ctx.prisma.application.create({
         data: {
           name: input.name,
           description: input.description,
-          issuerUrl: defaultIssuerUrl,
+          subdomain: defaultSubdomain,
           baseUrl: input.baseUrl,
           secret: randomUUID(),
           clientId: randomUUID(),
