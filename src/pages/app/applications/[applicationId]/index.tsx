@@ -1,11 +1,21 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { trpc } from "~/utils/trpc";
 
-const Home: NextPage = () => {
-  const applications = trpc.admin.applications.all.useQuery();
+function Application({ applicationId }: { applicationId: string }) {
+  const application = trpc.admin.applications.show.useQuery(applicationId);
+  return (
+    <>
+      <h2>{application.data?.name}</h2>
+      <p>{application.data?.description}</p>
+    </>
+  );
+}
 
+const AdminApplicationsShowPage: NextPage = () => {
+  const router = useRouter();
+  const applicationId = router.query.applicationId as string | undefined;
   return (
     <>
       <Head>
@@ -16,20 +26,14 @@ const Home: NextPage = () => {
 
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
         <h1 className="text-5xl font-extrabold leading-normal text-gray-700 md:text-[5rem]">
-          App/Applications Page
+          App/Applications/ApplicationId Page
         </h1>
         <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-          {applications.data?.map((application) => (
-            <div key={application.id}>
-              <Link href={`/applications/${application.id}`}>
-                <strong>{application.name}</strong>
-              </Link>
-            </div>
-          ))}
+          {applicationId && <Application applicationId={applicationId} />}
         </div>
       </main>
     </>
   );
 };
 
-export default Home;
+export default AdminApplicationsShowPage;

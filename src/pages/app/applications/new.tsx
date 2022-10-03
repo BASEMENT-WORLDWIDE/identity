@@ -1,10 +1,38 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { FormEventHandler } from "react";
 import { trpc } from "~/utils/trpc";
 
 const Home: NextPage = () => {
-  //   const hello = trpc.
+  const router = useRouter();
+  const createApplication = trpc.admin.applications.create.useMutation();
 
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(evt.currentTarget);
+    const name = formData.get("name");
+    const baseUrl = formData.get("subdomain");
+    const description = formData.get("description");
+    if (typeof name !== "string") {
+      return;
+    }
+    if (typeof baseUrl !== "string") {
+      return;
+    }
+    if (typeof description !== "string") {
+      return;
+    }
+    const response = await createApplication.mutateAsync({
+      name,
+      baseUrl,
+      description,
+    });
+
+    if (response.id) {
+      router.push("/applications");
+    }
+  };
   return (
     <>
       <Head>
@@ -18,7 +46,7 @@ const Home: NextPage = () => {
           App/Applications/New Page
         </h1>
         <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label>
                 Application Name

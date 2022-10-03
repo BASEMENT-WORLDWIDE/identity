@@ -2,8 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "~/utils/trpc";
 
-const Home: NextPage = () => {
-  const hello = trpc.useQuery(["public.hello", { text: "from tRPC" }]);
+const AppIndexPage: NextPage = () => {
+  // const hello = trpc.public.hello.useQuery({ text: "from tRPC" });
 
   return (
     <>
@@ -51,14 +51,14 @@ const Home: NextPage = () => {
           />
         </div>
         <div className="flex w-full items-center justify-center pt-6 text-2xl text-blue-500">
-          {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
+          {/* {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>} */}
         </div>
       </main>
     </>
   );
 };
 
-export default Home;
+export default AppIndexPage;
 
 type TechnologyCardProps = {
   name: string;
