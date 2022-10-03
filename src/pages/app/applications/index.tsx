@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { trpc } from "~/utils/trpc";
 
-const Home: NextPage = () => {
+const AdminApplicationsIndexPage: NextPage = () => {
   const applications = trpc.admin.applications.all.useQuery();
 
   return (
@@ -32,4 +32,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default AdminApplicationsIndexPage;

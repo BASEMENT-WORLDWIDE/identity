@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { trpc } from "~/utils/trpc";
+// import { trpc } from "~/utils/trpc";
 
 const AppIndexPage: NextPage = () => {
   // const hello = trpc.public.hello.useQuery({ text: "from tRPC" });

@@ -21,9 +21,9 @@ export default function middleware(req: NextRequest) {
   const hostname = req.headers.get("host") || "demo.vercel.pub";
 
   // Only for demo purposes - remove this if you want to use your root domain as the landing page
-  //   if (hostname === "vercel.pub" || hostname === "platforms.vercel.app") {
-  //     return NextResponse.redirect("https://demo.vercel.pub");
-  //   }
+  // if (hostname === "vercel.pub" || hostname === "platforms.vercel.app") {
+  //   return NextResponse.redirect("https://demo.vercel.pub");
+  // }
 
   /*  You have to replace ".vercel.pub" with your own domain if you deploy this example under your domain.
       You can also use wildcard subdomains on .vercel.app links that are associated with your Vercel team slug
@@ -37,10 +37,14 @@ export default function middleware(req: NextRequest) {
       : hostname.replace(`.localhost:3000`, "");
   // rewrites for app pages
   if (currentHost == "app") {
-    // if (url.pathname === "/login") {
-    //   url.pathname = "/";
-    //   return NextResponse.redirect(url);
-    // }
+    if (
+      url.pathname === "/login" &&
+      (req.cookies.get("next-auth.session-token") ||
+        req.cookies.get("__Secure-next-auth.session-token"))
+    ) {
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
 
     url.pathname = `/app${url.pathname}`;
     return NextResponse.rewrite(url);

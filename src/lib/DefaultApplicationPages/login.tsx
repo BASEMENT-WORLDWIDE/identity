@@ -33,22 +33,12 @@ const DefaultApplicationLoginPage = (
         </div>
         <div>
           <button type="submit">Log In</button>
-          <Link
-            replace
-            href={{
-              pathname: `/reset-password`,
-            }}
-          >
+          <Link replace href={"/reset-password"}>
             Reset Password
           </Link>
           <div>
             Need an account?
-            <Link
-              replace
-              href={{
-                pathname: "/signup",
-              }}
-            >
+            <Link replace href={"/signup"}>
               Sign Up
             </Link>
           </div>

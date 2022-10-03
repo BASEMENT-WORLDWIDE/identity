@@ -34,12 +34,7 @@ const DefaultApplicationSignupPage = (
           <button type="submit">Sign Up</button>
           <span>
             Already have an account?{" "}
-            <Link
-              replace
-              href={{
-                pathname: "/login",
-              }}
-            >
+            <Link replace href={"/login"}>
               Login
             </Link>
           </span>
