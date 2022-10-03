@@ -1,13 +1,11 @@
 import Link from "next/link";
-import { FormEventHandler } from "react";
+import type { FormEventHandler } from "react";
 
-type DefaultApplicationSignupPageProps = {
+type ThemeDefaultSignupPageProps = {
   applicationName: string;
 };
 
-const DefaultApplicationSignupPage = (
-  props: DefaultApplicationSignupPageProps
-) => {
+const ThemeDefaultSignupPage = (props: ThemeDefaultSignupPageProps) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.currentTarget);
@@ -44,4 +42,4 @@ const DefaultApplicationSignupPage = (
   );
 };
 
-export default DefaultApplicationSignupPage;
+export default ThemeDefaultSignupPage;

@@ -1,10 +1,10 @@
 import { NextPage } from "next";
-import DefaultApplicationPages from "~/lib/DefaultApplicationPages";
+import ThemeDefault from "~/themes/ThemeDefault";
 
 const DefaultApplicationPage: NextPage = () => {
   return (
     <div className="mx-auto max-w-7xl">
-      <DefaultApplicationPages />
+      <ThemeDefault />
     </div>
   );
 };

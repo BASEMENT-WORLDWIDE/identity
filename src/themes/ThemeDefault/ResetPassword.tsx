@@ -1,11 +1,11 @@
-import { FormEventHandler } from "react";
+import type { FormEventHandler } from "react";
 
-type DefaultApplicationPasswordResetPageProps = {
+type ThemeDefaultPasswordResetPageProps = {
   applicationName: string;
 };
 
-const DefaultApplicationPasswordResetPage = (
-  props: DefaultApplicationPasswordResetPageProps
+const ThemeDefaultPasswordResetPage = (
+  props: ThemeDefaultPasswordResetPageProps
 ) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
@@ -32,4 +32,4 @@ const DefaultApplicationPasswordResetPage = (
   );
 };
 
-export default DefaultApplicationPasswordResetPage;
+export default ThemeDefaultPasswordResetPage;

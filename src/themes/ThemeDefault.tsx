@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-import DefaultApplicationLoginPage from "./DefaultApplicationPages/login";
-import DefaultApplicationPasswordResetPage from "./DefaultApplicationPages/reset-password";
-import DefaultApplicationSignupPage from "./DefaultApplicationPages/signup";
+import LoginPage from "./ThemeDefault/Login";
+import PasswordResetPage from "./ThemeDefault/ResetPassword";
+import SignupPage from "./ThemeDefault/Signup";
 
 function DefaultApplicationPages() {
   const router = useRouter();
@@ -16,13 +15,11 @@ function DefaultApplicationPages() {
     return <div />;
   }
   if (isLogin) {
-    return <DefaultApplicationLoginPage applicationName={applicationName} />;
+    return <LoginPage applicationName={applicationName} />;
   } else if (isSignup) {
-    return <DefaultApplicationSignupPage applicationName={applicationName} />;
+    return <SignupPage applicationName={applicationName} />;
   } else if (isPasswordReset) {
-    return (
-      <DefaultApplicationPasswordResetPage applicationName={applicationName} />
-    );
+    return <PasswordResetPage applicationName={applicationName} />;
   }
   // default return loader or something...
   return <div></div>;

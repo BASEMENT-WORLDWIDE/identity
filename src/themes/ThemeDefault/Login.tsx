@@ -1,14 +1,11 @@
-import { router } from "@trpc/server";
 import Link from "next/link";
-import { FormEventHandler } from "react";
+import type { FormEventHandler } from "react";
 
-type DefaultApplicationLoginPageProps = {
+type ThemeDefaultLoginPageProps = {
   applicationName: string;
 };
 
-const DefaultApplicationLoginPage = (
-  props: DefaultApplicationLoginPageProps
-) => {
+const ThemeDefaultLoginPage = (props: ThemeDefaultLoginPageProps) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (evt) => {
     evt.preventDefault();
     const formData = new FormData(evt.currentTarget);
@@ -48,4 +45,4 @@ const DefaultApplicationLoginPage = (
   );
 };
 
-export default DefaultApplicationLoginPage;
+export default ThemeDefaultLoginPage;
